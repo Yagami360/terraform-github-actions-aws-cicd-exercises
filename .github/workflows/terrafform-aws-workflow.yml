@@ -42,7 +42,8 @@ jobs:
       matrix:
         dir:
           - terraform/aws/ec2           # AWS の EC2 インスタンスの tf ファイルを格納
-          - terraform/aws/iam           # AWS の IAM の tf ファイルを格納（今回は不使用）
+          - terraform/aws/iam           # AWS の IAM の tf ファイルを格納
+          - terraform/aws/eks           # AWS の EKS クラスターの tf ファイルを格納
     #-----------------------------
     # 環境変数の設定
     #-----------------------------
