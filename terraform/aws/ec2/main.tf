@@ -83,9 +83,9 @@ resource "aws_key_pair" "terraform_key_pair" {
     public_key = file("/.ssh/id_rsa.pub")
 }
 
-# EC2インスタンスの設定
+# EC2 インスタンスの設定
 resource "aws_instance" "terraform_instance" {
-    count         = 2
+    count         = 1
     ami           = "ami-008b09448b998a562" # Ubuntu Server 16.04 LTS (HVM), SSD Volume Type
     instance_type = "t2.micro"
     vpc_security_group_ids = ["${aws_security_group.terraform_security_group.id}"]
