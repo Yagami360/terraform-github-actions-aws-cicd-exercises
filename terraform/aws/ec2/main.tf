@@ -1,3 +1,6 @@
+# 変数定義
+variable ssh_public_key {}
+
 # プロバイダーの設定
 provider "aws" {
     #version = "~> 2.0"
@@ -80,7 +83,8 @@ resource "aws_eip" "terraform_eip" {
 # ssh-key 登録
 resource "aws_key_pair" "terraform_key_pair" {
     key_name   = "id_rsa"
-    public_key = file("/.ssh/id_rsa.pub")
+#    public_key = file("/.ssh/id_rsa.pub")  # GitHub Action 実行時の terraform 環境には *.pub ファイルが存在しないのでエラーになる
+    public_key = var.ssh_public_key     # *.tfvars で定義した値を参照
 }
 
 # EC2 インスタンスの設定
