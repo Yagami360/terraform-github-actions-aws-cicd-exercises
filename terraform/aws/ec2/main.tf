@@ -71,7 +71,7 @@ resource "aws_security_group" "terraform_security_group" {
     }
 }
 
-# 固定 IP の設定
+# 固定IP の設定
 resource "aws_eip" "terraform_eip" {
     instance = "${aws_instance.terraform_instance[0].id}"
     vpc = true
