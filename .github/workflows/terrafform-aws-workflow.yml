@@ -48,7 +48,7 @@ jobs:
     # 環境変数の設定
     #-----------------------------
     env:
-      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}     # GitHub レポジトリへのアクセストークンを設定し、GitHub レポジトリへのコメントが可能にする
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}     # GitHub レポジトリへのアクセストークンを設定し、GitHub レポジトリへのコメントが可能にする / secrets は、github レポジトリの project の setting > secrets から登録する
       AWS_REGION: "us-west-2"
       TERRAFORM_DIR: ${{ matrix.dir }}              # tf ファイルの格納ディレクトリ
     #-----------------------------
@@ -75,9 +75,11 @@ jobs:
         if: steps.diff.outputs.diff
         uses: aws-actions/configure-aws-credentials@v1            # configure-aws-credentials を使うことで、AWSのアクセスキーをハードコードすることなく権限を入手できる
         with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: ${{ env.AWS_REGION }}
+          aws-region: ${{ env.AWS_REGION }}        
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}           # github レポジトリの [setting -> secrets -> Actions] で設定した AWS_ACCESS_KEY_ID を設定
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}   # github レポジトリの [setting -> secrets -> Actions] で設定した AWS_SECRET_ACCESS_KEY を設定
+#          role-to-assume: ${{ secrets.TERRAFORM_ROLE_TO_ASSUME }}      # 
+#          role-duration-seconds: 900                                   # 発行されるクレデンシャルの有効期間 
       #-----------------------------
       # terraform のインストール
       #-----------------------------
