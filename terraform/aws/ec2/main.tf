@@ -84,7 +84,7 @@ resource "aws_eip" "terraform_eip" {
 resource "aws_key_pair" "terraform_key_pair" {
     key_name   = "id_rsa"
 #    public_key = file("/.ssh/id_rsa.pub")  # GitHub Action 実行時の terraform 環境には *.pub ファイルが存在しないのでエラーになる
-    public_key = var.ssh_public_key     # *.tfvars で定義した値を参照
+    public_key = var.ssh_public_key     # *.tfvars or secrets で定義した値を参照
 }
 
 # EC2 インスタンスの設定
