@@ -1,8 +1,8 @@
+*.code-workspace
 *.env
-terraform/.terraform
+.terraform
 *.tfstate
 *.tfstate.backup
+*.tfvars
 .terraform.lock.hcl
 *.info
-*.code-workspace
-*.tfvars
