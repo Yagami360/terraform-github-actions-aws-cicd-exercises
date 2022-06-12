@@ -6,3 +6,4 @@
 *.tfvars
 .terraform.lock.hcl
 *.info
+_old

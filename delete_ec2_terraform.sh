@@ -55,6 +55,11 @@ export AWS_DEFAULT_PROFILE=${AWS_PROFILE_NAME}
 cat ${HOME}/.aws/credentials
 
 #-----------------------------
+# AWS Systems Manager のパラメーターストアにある ssh 公開鍵を削除する
+#-----------------------------
+aws ssm delete-parameter --name "ssh_public_key"
+
+#-----------------------------
 # terraform
 #-----------------------------
 # terraform コンテナ起動

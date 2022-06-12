@@ -6,6 +6,14 @@ Terraform と GitHub Actions を使用した AWS リソースの CI/CD の練習
 
 ### ◎ EC2 インスタンスの CI/CD を行う場合
 
+1. 【初回のみ】AWS Systems Manager のパラメーターストアに ssh 公開鍵を登録する<br>
+    ```sh
+    aws ssm put-parameter \
+        --name "ssh_public_key" \
+        --value "`cat ${HOME}/.ssh/id_rsa.pub`" \
+        --type String
+    ```
+
 1. ブランチを切る<br>
     `main` ブランチから別ブランチを作成する
     ```sh

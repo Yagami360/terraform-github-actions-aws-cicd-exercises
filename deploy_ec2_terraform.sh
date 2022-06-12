@@ -55,6 +55,14 @@ export AWS_DEFAULT_PROFILE=${AWS_PROFILE_NAME}
 cat ${HOME}/.aws/credentials
 
 #-----------------------------
+# AWS Systems Manager のパラメーターストアに ssh 公開鍵を登録する
+#-----------------------------
+aws ssm put-parameter \
+    --name "ssh_public_key" \
+    --value "`cat ${HOME}/.ssh/id_rsa.pub`" \
+    --type String
+
+#-----------------------------
 # terraform
 #-----------------------------
 # terraform コンテナ起動
