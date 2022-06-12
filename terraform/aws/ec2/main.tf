@@ -1,7 +1,7 @@
 # プロバイダーの設定
 provider "aws" {
     #version = "~> 2.0"
-    profile = "default"
+    #profile = "default"
     #profile = "Yagami360"
     region = "us-west-2"
 }
