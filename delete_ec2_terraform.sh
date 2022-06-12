@@ -57,7 +57,10 @@ cat ${HOME}/.aws/credentials
 #-----------------------------
 # AWS Systems Manager のパラメーターストアにある ssh 公開鍵を削除する
 #-----------------------------
-aws ssm delete-parameter --name "ssh_public_key"
+aws ssm get-parameter --name "ssh_public_key" &> /dev/null
+if [ $? -ne 0 ] ; then
+  aws ssm delete-parameter --name "ssh_public_key"
+fi
 
 #-----------------------------
 # terraform

@@ -113,7 +113,6 @@ jobs:
 #        if: steps.diff.outputs.diff == 'true'
         id: plan
         run: terraform -chdir="${TERRAFORM_DIR}" plan -out workspace.plan
-#        run: terraform -chdir="${TERRAFORM_DIR}" plan -var 'ssh_public_key=${{ secrets.SSH_PUBLIC_KEY }}' -out workspace.plan
       # PR に terraform plan の内容を投稿
       - name: post PR terraform plan
 #        if: always() && steps.diff.outputs.diff == 'true' && github.event_name == 'pull_request'
@@ -130,4 +129,3 @@ jobs:
 #        if: steps.diff.outputs.diff == 'true' && github.event_name == 'push'
         if: github.event_name == 'push'
         run: terraform -chdir="${TERRAFORM_DIR}" apply workspace.plan
-#        run: terraform -chdir="${TERRAFORM_DIR}" apply workspace.plan -var 'ssh_public_key=${{ secrets.SSH_PUBLIC_KEY }}'

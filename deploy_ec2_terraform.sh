@@ -57,10 +57,13 @@ cat ${HOME}/.aws/credentials
 #-----------------------------
 # AWS Systems Manager のパラメーターストアに ssh 公開鍵を登録する
 #-----------------------------
-aws ssm put-parameter \
-    --name "ssh_public_key" \
-    --value "`cat ${HOME}/.ssh/id_rsa.pub`" \
-    --type String
+aws ssm get-parameter --name "ssh_public_key" &> /dev/null
+if [ $? -ne 0 ] ; then
+  aws ssm put-parameter \
+      --name "ssh_public_key" \
+      --value "`cat ${HOME}/.ssh/id_rsa.pub`" \
+      --type String
+fi
 
 #-----------------------------
 # terraform
